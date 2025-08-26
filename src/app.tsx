@@ -1,3 +1,4 @@
+import Tiptap from '@/components/tiptap';
 import { Button } from '@/components/ui/button';
 
 export default function App() {
@@ -9,7 +10,9 @@ export default function App() {
           <Button size="sm">Focus Mode</Button>
           <Button size="sm">Syntax Highlighting</Button>
         </div>
-        <div>Editor Goes here</div>
+        <div>
+          <Tiptap />
+        </div>
       </div>
     </div>
   );
