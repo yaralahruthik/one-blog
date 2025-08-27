@@ -8,8 +8,8 @@ export default function Tiptap() {
   });
 
   return (
-    <div className="prose">
-      <EditorContent editor={editor} />
+    <div className="font-ibm-sans h-full p-4">
+      <EditorContent editor={editor} className="h-full" />
     </div>
   );
 }
