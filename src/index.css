@@ -125,5 +125,9 @@
 }
 
 .tiptap {
-  @apply h-full;
+  @apply h-full p-4 caret-blue-600 outline-0;
+}
+
+.focus-mode .tiptap *:not(.has-focus) {
+  @apply opacity-50 transition-opacity duration-200;
 }
