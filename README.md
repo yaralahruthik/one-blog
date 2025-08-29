@@ -14,7 +14,7 @@ The MVP would be the above features with markdown export.
 ## Inspiration
 
 > The artist is a collector. Not a hoarder, mind you, there's a difference: Hoarders collect indiscriminately, artists collect selectively. They only collect things that they really love.
-> -Austin Kleon
+> —Austin Kleon
 
 - [iA Writer](https://ia.net/writer)
 - [Typora](https://typora.io/)
