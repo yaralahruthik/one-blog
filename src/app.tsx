@@ -1,15 +1,21 @@
 import ThemeToggle from '@/components/theme-toggle';
 import Tiptap from '@/components/tiptap';
+import GrammarModeDropdown from '@/components/grammar-mode-dropdown';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { JSONContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { renderToMarkdown } from '@tiptap/static-renderer';
 import React from 'react';
+import { POS_OPTIONS_LIST } from '@/constants/pos';
 
 export default function App() {
   const [focusMode, setFocusMode] = React.useState(false);
   const [curJSON, setJSON] = React.useState<JSONContent | null>(null);
+  const [grammarMode, setGrammarMode] = React.useState(false);
+  const [selectedPOSOptions, setSelectedPOSOptions] = React.useState<string[]>(
+    [],
+  );
 
   const exportMarkdown = () => {
     if (!curJSON) {
@@ -63,10 +69,22 @@ title: "${title}"
           <Button size="sm" variant="outline" onClick={exportMarkdown}>
             Export Markdown
           </Button>
+          <GrammarModeDropdown
+            grammarMode={grammarMode}
+            setGrammarMode={setGrammarMode}
+            selectedPOSOptions={selectedPOSOptions}
+            setSelectedPOSOptions={setSelectedPOSOptions}
+            posOptionsList={POS_OPTIONS_LIST}
+          />
           <ThemeToggle />
         </div>
         <div className={cn(focusMode && 'focus-mode')}>
-          <Tiptap onUpdate={setJSON} />
+          <Tiptap
+            onUpdate={setJSON}
+            grammarMode={grammarMode}
+            selectedPOSOptions={selectedPOSOptions}
+            posOptionsList={POS_OPTIONS_LIST}
+          />
         </div>
       </div>
     </div>
