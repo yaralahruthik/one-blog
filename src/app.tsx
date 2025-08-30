@@ -16,9 +16,23 @@ export default function App() {
       return;
     }
 
-    console.log(
-      renderToMarkdown({ content: curJSON, extensions: [StarterKit] }),
-    );
+    const markdown = renderToMarkdown({
+      content: curJSON,
+      extensions: [StarterKit],
+    });
+
+    const blob = new Blob([markdown], { type: 'text/markdown' });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `blog-post-${new Date().toISOString().split('T')[0]}.md`;
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
