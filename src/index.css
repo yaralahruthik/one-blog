@@ -125,7 +125,7 @@
 }
 
 .tiptap {
-  @apply h-full p-4 caret-blue-600 outline-0;
+  @apply h-full p-4 caret-blue-600 outline-0 dark:caret-blue-500;
 }
 
 .focus-mode .tiptap *:not(.has-focus) {

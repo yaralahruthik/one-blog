@@ -1,8 +1,12 @@
 import { Focus } from '@tiptap/extensions';
-import { EditorContent, useEditor } from '@tiptap/react';
+import { EditorContent, useEditor, type JSONContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
-export default function Tiptap() {
+export default function Tiptap({
+  onUpdate,
+}: {
+  onUpdate: (content: JSONContent) => void;
+}) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -15,13 +19,16 @@ export default function Tiptap() {
     <p>This editor you see is part of the experience. Why don't you try out the focus mode?</p>
 
     <p>It will dim out everything except for the focused paragraph.</p>`,
+    onUpdate: ({ editor }) => {
+      onUpdate(editor.getJSON());
+    },
   });
 
   return (
     <div className="font-ibm-sans h-full">
       <EditorContent
         editor={editor}
-        className="prose prose-sm mx-auto h-full"
+        className="prose dark:prose-invert prose-sm mx-auto h-full"
       />
     </div>
   );
