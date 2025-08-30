@@ -16,12 +16,26 @@ export default function App() {
       return;
     }
 
+    // TODO: This needs better utility to generate the YAML data.
+    const title = prompt('Enter a title for your blog post:');
+    if (!title) {
+      return;
+    }
+
     const markdown = renderToMarkdown({
       content: curJSON,
       extensions: [StarterKit],
     });
 
-    const blob = new Blob([markdown], { type: 'text/markdown' });
+    const yamlFrontmatter = `---
+title: "${title}"
+---
+
+`;
+
+    const fullContent = yamlFrontmatter + markdown;
+
+    const blob = new Blob([fullContent], { type: 'text/markdown' });
 
     const url = URL.createObjectURL(blob);
 
