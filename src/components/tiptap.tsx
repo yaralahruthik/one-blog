@@ -21,7 +21,7 @@ export default function Tiptap() {
     <div className="font-ibm-sans h-full">
       <EditorContent
         editor={editor}
-        className="prose prose-sm mx-auto h-full"
+        className="prose dark:prose-invert prose-sm mx-auto h-full"
       />
     </div>
   );
