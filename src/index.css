@@ -128,6 +128,12 @@
   @apply h-full p-4 caret-blue-600 outline-0 dark:caret-blue-500;
 }
 
+/* Dim everything except focused */
 .focus-mode .tiptap *:not(.has-focus) {
-  @apply opacity-50 transition-opacity duration-200;
+  @apply text-muted-foreground/50 transition-colors duration-200;
+}
+
+/* Dim list markers too */
+.focus-mode .tiptap *:not(.has-focus)::marker {
+  @apply text-muted-foreground/50;
 }

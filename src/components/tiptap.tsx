@@ -11,7 +11,7 @@ export default function Tiptap({
     extensions: [
       StarterKit,
       Focus.configure({
-        mode: 'deepest',
+        mode: 'all',
       }),
     ],
     content: `<p>I am building a new project to help me write better, I mean a lot better.</p>
