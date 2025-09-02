@@ -1,7 +1,9 @@
 import ThemeToggle from '@/components/theme-toggle';
 import Tiptap from '@/components/tiptap';
+import ExportDialog from '@/components/export-dialog';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { createFrontmatter, createFilename } from '@/lib/yaml-utils';
 import type { JSONContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { renderToMarkdown } from '@tiptap/static-renderer';
@@ -10,15 +12,10 @@ import React from 'react';
 export default function App() {
   const [focusMode, setFocusMode] = React.useState(false);
   const [curJSON, setJSON] = React.useState<JSONContent | null>(null);
+  const [showExportDialog, setShowExportDialog] = React.useState(false);
 
-  const exportMarkdown = () => {
+  const handleExport = (title: string, description?: string) => {
     if (!curJSON) {
-      return;
-    }
-
-    // TODO: This needs better utility to generate the YAML data.
-    const title = prompt('Enter a title for your blog post:');
-    if (!title) {
       return;
     }
 
@@ -27,26 +24,32 @@ export default function App() {
       extensions: [StarterKit],
     });
 
-    const yamlFrontmatter = `---
-title: "${title}"
----
-
-`;
+    const yamlFrontmatter = createFrontmatter({
+      title,
+      description,
+    });
 
     const fullContent = yamlFrontmatter + markdown;
+    const filename = createFilename(title);
 
     const blob = new Blob([fullContent], { type: 'text/markdown' });
-
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = `blog-post-${new Date().toISOString().split('T')[0]}.md`;
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
 
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const openExportDialog = () => {
+    if (!curJSON) {
+      return;
+    }
+    setShowExportDialog(true);
   };
 
   return (
@@ -60,7 +63,7 @@ title: "${title}"
           >
             {focusMode ? 'Disable Focus Mode' : 'Enable Focus Mode'}
           </Button>
-          <Button size="sm" variant="outline" onClick={exportMarkdown}>
+          <Button size="sm" variant="outline" onClick={openExportDialog}>
             Export Markdown
           </Button>
           <ThemeToggle />
@@ -69,6 +72,12 @@ title: "${title}"
           <Tiptap onUpdate={setJSON} />
         </div>
       </div>
+
+      <ExportDialog
+        open={showExportDialog}
+        onOpenChange={setShowExportDialog}
+        onExport={handleExport}
+      />
     </div>
   );
 }
