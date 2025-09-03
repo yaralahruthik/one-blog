@@ -18,15 +18,13 @@ export default function Writer() {
 
   return (
     <div className="flex h-svh flex-col">
-      <div className="container mx-auto flex-1 overflow-hidden">
-        <div className={cn('h-full', focusMode && 'focus-mode')}>
-          <ScrollArea className="h-full">
-            <Tiptap onUpdate={setJSON} />
-          </ScrollArea>
-        </div>
-      </div>
+      <ScrollArea
+        className={cn('flex-1 overflow-y-auto', focusMode && 'focus-mode')}
+      >
+        <Tiptap onUpdate={setJSON} />
+      </ScrollArea>
 
-      <div className="bg-background flex w-full justify-end gap-1 p-2">
+      <div className="flex w-full shrink-0 justify-end gap-1 border-t">
         <FocusModeButton isActive={focusMode} toggleFocus={toggleFocus} />
         <ExportMarkdownButtonWithDialog json={curJSON} />
         <FullscreenModeButton />
