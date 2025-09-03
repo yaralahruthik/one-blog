@@ -1,4 +1,4 @@
-import React from 'react';
+import ToolbarButton from '@/components/toolbar-button';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,18 +12,19 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { createFilename, createFrontmatter } from '@/lib/yaml-utils';
+import type { JSONContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { renderToMarkdown } from '@tiptap/static-renderer';
+import React from 'react';
 
-interface ExportDialogProps {
+type ExportDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onExport: (title: string, description?: string) => void;
-}
+};
 
-export default function ExportDialog({
-  open,
-  onOpenChange,
-  onExport,
-}: ExportDialogProps) {
+function ExportDialog({ open, onOpenChange, onExport }: ExportDialogProps) {
   const [title, setTitle] = React.useState('');
   const [description, setDescription] = React.useState('');
 
@@ -85,5 +86,63 @@ export default function ExportDialog({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
+  );
+}
+
+export default function ExportMarkdownButtonWithDialog({
+  json,
+}: {
+  json: JSONContent | null;
+}) {
+  const [showExportDialog, setShowExportDialog] = React.useState(false);
+
+  const handleExport = (title: string, description?: string) => {
+    if (!json) {
+      return;
+    }
+
+    const markdown = renderToMarkdown({
+      content: json,
+      extensions: [StarterKit],
+    });
+
+    const yamlFrontmatter = createFrontmatter({
+      title,
+      description,
+    });
+
+    const fullContent = yamlFrontmatter + markdown;
+    const filename = createFilename(title);
+
+    const blob = new Blob([fullContent], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const openExportDialog = () => {
+    if (!json) {
+      // TODO: Toast Message
+      return;
+    }
+    setShowExportDialog(true);
+  };
+
+  return (
+    <>
+      <ToolbarButton label="Export Markdown" action={openExportDialog} />
+      <ExportDialog
+        open={showExportDialog}
+        onOpenChange={setShowExportDialog}
+        onExport={handleExport}
+      />
+    </>
   );
 }
