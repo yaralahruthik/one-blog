@@ -1,6 +1,5 @@
 import ThemeToggle from '@/components/theme-toggle';
 import Tiptap from '@/components/tiptap';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import type { JSONContent } from '@tiptap/react';
 import React from 'react';
@@ -18,11 +17,9 @@ export default function Writer() {
 
   return (
     <div className="flex h-svh flex-col">
-      <ScrollArea
-        className={cn('flex-1 overflow-y-auto', focusMode && 'focus-mode')}
-      >
+      <div className={cn('h-full overflow-y-auto', focusMode && 'focus-mode')}>
         <Tiptap onUpdate={setJSON} />
-      </ScrollArea>
+      </div>
 
       <div className="flex w-full shrink-0 justify-end gap-1 border-t">
         <FocusModeButton isActive={focusMode} toggleFocus={toggleFocus} />

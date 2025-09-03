@@ -25,9 +25,11 @@ export default function Tiptap({
   });
 
   return (
-    <EditorContent
-      editor={editor}
-      className="prose font-ibm-sans dark:prose-invert prose-sm mx-auto h-full max-w-4xl"
-    />
+    <div className="h-full">
+      <EditorContent
+        editor={editor}
+        className="prose font-ibm-sans dark:prose-invert prose-sm mx-auto h-full max-w-4xl"
+      />
+    </div>
   );
 }
