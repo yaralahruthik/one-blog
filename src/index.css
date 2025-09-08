@@ -119,6 +119,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -129,11 +130,19 @@
 }
 
 /* Dim everything except focused */
-.focus-mode .tiptap *:not(.has-focus) {
+.focus-mode .tiptap *:not(.has-focus):not(span) {
   @apply text-muted-foreground/50;
 }
 
-/* Dim list markers too */
-.focus-mode .tiptap *:not(.has-focus)::marker {
+/* Dim list markers too, but still skip spans */
+.focus-mode .tiptap *:not(.has-focus):not(span)::marker {
   @apply text-muted-foreground/50;
+}
+
+.filler-highlight .tiptap .obw-filler-word {
+  @apply text-muted-foreground/50 line-through;
+}
+
+.focus-mode.filler-highlight .tiptap .obw-filler-word {
+  @apply text-muted-foreground/50 line-through;
 }
