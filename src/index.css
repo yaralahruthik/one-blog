@@ -139,6 +139,6 @@
   @apply text-muted-foreground/50;
 }
 
-.filler-word {
-  @apply text-red-500;
+.obw-filler-word {
+  @apply text-red-500 line-through;
 }
