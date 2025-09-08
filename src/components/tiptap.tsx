@@ -1,6 +1,7 @@
 import { Focus } from '@tiptap/extensions';
 import { EditorContent, useEditor, type JSONContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import FillerWordHighlight from '../lib/filler-word-highlight';
 
 export default function Tiptap({
   onUpdate,
@@ -13,6 +14,7 @@ export default function Tiptap({
       Focus.configure({
         mode: 'all',
       }),
+      FillerWordHighlight,
     ],
     content: `<p>I am building a new project to help me write better, I mean a lot better.</p>
 

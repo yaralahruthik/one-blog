@@ -119,6 +119,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -136,4 +137,8 @@
 /* Dim list markers too */
 .focus-mode .tiptap *:not(.has-focus)::marker {
   @apply text-muted-foreground/50;
+}
+
+.filler-word {
+  @apply text-red-500;
 }
