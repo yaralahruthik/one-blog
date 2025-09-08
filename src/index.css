@@ -140,9 +140,9 @@
 }
 
 .filler-highlight .tiptap .obw-filler-word {
-  @apply text-muted-foreground/70 line-through;
+  @apply text-muted-foreground/50 line-through;
 }
 
 .focus-mode.filler-highlight .tiptap .obw-filler-word {
-  @apply text-muted-foreground/40;
+  @apply text-muted-foreground/50 line-through;
 }
