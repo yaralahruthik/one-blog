@@ -139,6 +139,6 @@
   @apply text-muted-foreground/50;
 }
 
-.obw-filler-word {
-  @apply text-red-500 line-through;
+.filler-highlight .tiptap .obw-filler-word {
+  @apply line-through;
 }

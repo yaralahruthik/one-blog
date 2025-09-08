@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils';
 import type { JSONContent } from '@tiptap/react';
 import React from 'react';
 import ExportMarkdownButtonWithDialog from './export-markdown-button-with-dialog';
+import FillerHighlightButton from './filler-highlight-button';
 import FocusModeButton from './focus-mode-button';
 import FullscreenModeButton from './fullscreen-mode-button';
-import FillerHighlightButton from './filler-highlight-button';
 
 export default function Writer() {
   const [focusMode, setFocusMode] = React.useState(false);
@@ -23,8 +23,14 @@ export default function Writer() {
 
   return (
     <div className="flex h-svh flex-col">
-      <div className={cn('h-full overflow-y-auto', focusMode && 'focus-mode')}>
-        <Tiptap onUpdate={setJSON} fillerHighlight={fillerHighlight} />
+      <div
+        className={cn(
+          'h-full overflow-y-auto',
+          focusMode && 'focus-mode',
+          fillerHighlight && 'filler-highlight',
+        )}
+      >
+        <Tiptap onUpdate={setJSON} />
       </div>
 
       <div className="flex w-full shrink-0 justify-end gap-1 border-t">
