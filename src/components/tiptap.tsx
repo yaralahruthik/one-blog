@@ -1,8 +1,8 @@
+import FillerWordHighlight from '@/features/writer/extensions/filler-word-highlight';
 import { Focus } from '@tiptap/extensions';
 import { EditorContent, useEditor, type JSONContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useRef } from 'react';
-import FillerWordHighlight from '../lib/filler-word-highlight';
 
 export default function Tiptap({
   onUpdate,
