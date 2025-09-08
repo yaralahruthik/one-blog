@@ -4,19 +4,30 @@ import { Decoration, DecorationSet } from '@tiptap/pm/view';
 
 export type FillerWordHighlightOptions = {
   fillerWords: string[];
+  regex: RegExp;
 };
 
 const FillerWordHighlight = Extension.create<FillerWordHighlightOptions>({
   name: 'fillerWordHighlight',
 
   addOptions() {
+    const fillerWords = [
+      'um',
+      'uh',
+      'like',
+      'basically',
+      'actually',
+      'literally',
+    ];
+    const regex = new RegExp(`\\b(${fillerWords.join('|')})\\b`, 'gi');
     return {
-      fillerWords: ['um', 'uh', 'like', 'basically', 'actually', 'literally'],
+      fillerWords,
+      regex,
     };
   },
 
   addProseMirrorPlugins() {
-    const { fillerWords } = this.options;
+    const { fillerWords, regex } = this.options;
 
     return [
       new Plugin({
@@ -27,9 +38,7 @@ const FillerWordHighlight = Extension.create<FillerWordHighlightOptions>({
             const { doc } = state;
             const decorations: Decoration[] = [];
 
-            if (!fillerWords.length) return DecorationSet.empty;
-
-            const regex = new RegExp(`\\b(${fillerWords.join('|')})\\b`, 'gi');
+            if (!fillerWords.length || !regex) return DecorationSet.empty;
 
             doc.descendants((node, pos) => {
               if (!node.isText) return;
