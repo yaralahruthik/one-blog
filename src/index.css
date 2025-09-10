@@ -129,14 +129,21 @@
   @apply h-full p-4 caret-blue-600 outline-0 dark:caret-blue-500;
 }
 
-/* Dim everything except focused */
-.focus-mode .tiptap *:not(.has-focus):not(span) {
-  @apply text-muted-foreground/50;
-}
-
-/* Dim list markers too, but still skip spans */
-.focus-mode .tiptap *:not(.has-focus):not(span)::marker {
-  @apply text-muted-foreground/50;
+/* Dim entire blocks when not focused */
+.focus-mode .tiptap p:not(.has-focus),
+.focus-mode .tiptap h1:not(.has-focus),
+.focus-mode .tiptap h2:not(.has-focus),
+.focus-mode .tiptap h3:not(.has-focus),
+.focus-mode .tiptap ul:not(.has-focus),
+.focus-mode .tiptap ol:not(.has-focus),
+.focus-mode .tiptap blockquote:not(.has-focus),
+.focus-mode .tiptap pre:not(.has-focus),
+.focus-mode .tiptap div:not(.has-focus),
+.focus-mode .tiptap p:not(.has-focus) *,
+.focus-mode .tiptap h1:not(.has-focus) *,
+.focus-mode .tiptap h2:not(.has-focus) *,
+.focus-mode .tiptap h3:not(.has-focus) * {
+  @apply text-muted-foreground/50!;
 }
 
 .filler-highlight .tiptap .obw-filler-word {
