@@ -15,7 +15,7 @@ export default function Writer() {
   const [isToolbarVisible, setIsToolbarVisible] = React.useState(true);
 
   const hasUserStartedTypingRef = React.useRef(false);
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const toggleFocus = () => {
     setFocusMode((prev) => !prev);
