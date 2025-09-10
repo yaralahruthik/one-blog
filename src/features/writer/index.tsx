@@ -13,7 +13,7 @@ export default function Writer() {
   const [focusMode, setFocusMode] = React.useState(false);
   const [fillerHighlight, setFillerHighlight] = React.useState(true);
   const [curJSON, setJSON] = React.useState<JSONContent | null>(null);
-  const [shouldAutoHide, setShouldAutoHide] = React.useState(false);
+  const [startHiding, setStartHiding] = React.useState(false);
 
   const toggleFocus = () => {
     setFocusMode((prev) => !prev);
@@ -36,13 +36,13 @@ export default function Writer() {
           onUpdate={(json) => {
             setJSON(json);
             if (json && json.content && json.content.length > 0) {
-              setShouldAutoHide(true);
+              setStartHiding(true);
             }
           }}
         />
       </div>
 
-      <Toolbar shouldAutoHide={shouldAutoHide}>
+      <Toolbar startHiding={startHiding}>
         <FillerHighlightButton
           isActive={fillerHighlight}
           toggleFillerHighlight={toggleFillerHighlight}

@@ -1,12 +1,12 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
+import React from 'react';
 
 export default function Toolbar({
   children,
-  shouldAutoHide,
+  startHiding,
 }: {
   children: React.ReactNode;
-  shouldAutoHide: boolean;
+  startHiding: boolean;
 }) {
   const [isToolbarVisible, setIsToolbarVisible] = React.useState(true);
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -28,15 +28,15 @@ export default function Toolbar({
   };
 
   const hideToolbar = () => {
-    if (!shouldAutoHide) return;
+    if (!startHiding) return;
     startAutoHideTimer();
   };
 
   React.useEffect(() => {
-    if (shouldAutoHide) {
+    if (startHiding) {
       startAutoHideTimer();
     }
-  }, [shouldAutoHide]);
+  }, [startHiding]);
 
   React.useEffect(() => {
     return () => {
@@ -54,7 +54,7 @@ export default function Toolbar({
     >
       <div
         className={cn(
-          'flex w-full justify-end gap-1 border-t py-2 transition-transform duration-300 ease-in-out',
+          'flex w-full justify-end gap-1 border-t transition-transform duration-300 ease-in-out',
           isToolbarVisible ? 'translate-y-0' : 'translate-y-full',
         )}
       >
