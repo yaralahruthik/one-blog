@@ -7,11 +7,13 @@ import ExportMarkdownButtonWithDialog from './export-markdown-button-with-dialog
 import FillerHighlightButton from './filler-highlight-button';
 import FocusModeButton from './focus-mode-button';
 import FullscreenModeButton from './fullscreen-mode-button';
+import Toolbar from './toolbar';
 
 export default function Writer() {
   const [focusMode, setFocusMode] = React.useState(false);
   const [fillerHighlight, setFillerHighlight] = React.useState(true);
   const [curJSON, setJSON] = React.useState<JSONContent | null>(null);
+  const [startHiding, setStartHiding] = React.useState(false);
 
   const toggleFocus = () => {
     setFocusMode((prev) => !prev);
@@ -30,10 +32,17 @@ export default function Writer() {
           fillerHighlight && 'filler-highlight',
         )}
       >
-        <Tiptap onUpdate={setJSON} />
+        <Tiptap
+          onUpdate={(json) => {
+            setJSON(json);
+            if (json && json.content && json.content.length > 0) {
+              setStartHiding(true);
+            }
+          }}
+        />
       </div>
 
-      <div className="flex w-full shrink-0 justify-end gap-1 border-t">
+      <Toolbar startHiding={startHiding}>
         <FillerHighlightButton
           isActive={fillerHighlight}
           toggleFillerHighlight={toggleFillerHighlight}
@@ -42,7 +51,7 @@ export default function Writer() {
         <ExportMarkdownButtonWithDialog json={curJSON} />
         <FullscreenModeButton />
         <ThemeToggle />
-      </div>
+      </Toolbar>
     </div>
   );
 }
