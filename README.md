@@ -1,6 +1,8 @@
-# one-blog
+# One Blog
 
 Just building something for fun!
+
+<img width="1920" height="1440" alt="product" src="https://github.com/user-attachments/assets/fb181a19-c1c7-4c43-bdaf-88536cda0f12" />
 
 ## New Thoughts
 
