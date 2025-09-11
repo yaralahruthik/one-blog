@@ -23,9 +23,6 @@ export default function AttachLinkButton({ editor }: { editor: Editor }) {
         .setLink({ href: url })
         .run();
     }
-    // Fix: this is used to remove the text selection and remove the 'Attach Link' button,
-    // but the popover is flashing while being closed
-    editor.commands.blur();
   };
 
   return (

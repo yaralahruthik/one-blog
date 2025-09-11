@@ -1,6 +1,5 @@
 import AttachLinkButton from '@/features/writer/attach-link-button-with-popover';
 import FillerWordHighlight from '@/features/writer/extensions/filler-word-highlight';
-import Link from '@tiptap/extension-link';
 import { Focus } from '@tiptap/extensions';
 import { EditorContent, useEditor, type JSONContent } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
@@ -24,7 +23,6 @@ export default function Tiptap({
         mode: 'all',
       }),
       FillerWordHighlight,
-      Link,
     ],
     content: savedContent.current,
     onUpdate: ({ editor }) => {
