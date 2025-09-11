@@ -1,4 +1,4 @@
-import AttachLinkButton from '@/features/writer/attach-link-button-with-dialog';
+import AttachLinkButton from '@/features/writer/attach-link-button-with-popover';
 import FillerWordHighlight from '@/features/writer/extensions/filler-word-highlight';
 import Link from '@tiptap/extension-link';
 import { Focus } from '@tiptap/extensions';
