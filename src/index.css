@@ -153,3 +153,7 @@
 .focus-mode.filler-highlight .tiptap .obw-filler-word {
   @apply text-muted-foreground/50 line-through;
 }
+
+.tiptap a {
+  @apply hover:cursor-pointer;
+}
