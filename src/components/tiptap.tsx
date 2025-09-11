@@ -1,6 +1,8 @@
+import AttachLinkButton from '@/features/writer/attach-link-button-with-popover';
 import FillerWordHighlight from '@/features/writer/extensions/filler-word-highlight';
 import { Focus } from '@tiptap/extensions';
 import { EditorContent, useEditor, type JSONContent } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 import StarterKit from '@tiptap/starter-kit';
 import { useRef } from 'react';
 
@@ -31,6 +33,12 @@ export default function Tiptap({
 
   return (
     <div className="h-full">
+      {editor && (
+        <BubbleMenu editor={editor}>
+          <AttachLinkButton editor={editor} />
+        </BubbleMenu>
+      )}
+
       <EditorContent
         editor={editor}
         className="prose font-ibm-sans dark:prose-invert mx-auto h-full max-w-4xl"
