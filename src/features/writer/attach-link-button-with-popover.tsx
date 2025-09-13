@@ -10,6 +10,7 @@ import React from 'react';
 
 export default function AttachLinkButton({ editor }: { editor: Editor }) {
   const [url, setUrl] = React.useState('');
+  const [open, setOpen] = React.useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,15 +27,24 @@ export default function AttachLinkButton({ editor }: { editor: Editor }) {
     }
 
     setUrl('');
+    setOpen(false);
   };
 
   return (
-    <Popover>
+    <Popover
+      open={open}
+      onOpenChange={(nextOpen) => {
+        setOpen(nextOpen);
+        if (!nextOpen) {
+          setUrl('');
+        }
+      }}
+    >
       <PopoverTrigger asChild>
         <Button size="sm">Attach Link</Button>
       </PopoverTrigger>
-      <PopoverContent sideOffset={10} className="px-3 py-2">
-        <form onSubmit={handleSubmit} className="flex gap-3">
+      <PopoverContent sideOffset={10} className="p-2">
+        <form onSubmit={handleSubmit} className="flex">
           <Input
             type="url"
             value={url}
@@ -42,7 +52,9 @@ export default function AttachLinkButton({ editor }: { editor: Editor }) {
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://example.com"
           />
-          <Button type="submit">Add</Button>
+          <Button size="sm" type="submit">
+            Add
+          </Button>
         </form>
       </PopoverContent>
     </Popover>
