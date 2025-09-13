@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import type { JSONContent } from '@tiptap/react';
 import React from 'react';
-import SettingsMenu from './settings-menu';
+import SettingsMenu from './settings/settings-menu';
 import Tiptap from './tiptap';
 
 export default function Writer() {
