@@ -1,5 +1,4 @@
 import ThemeToggle from '@/components/theme-toggle';
-import Tiptap from '@/components/tiptap';
 import { cn } from '@/lib/utils';
 import type { JSONContent } from '@tiptap/react';
 import React from 'react';
@@ -7,6 +6,7 @@ import ExportMarkdownButtonWithDialog from './export-markdown-button-with-dialog
 import FillerHighlightButton from './filler-highlight-button';
 import FocusModeButton from './focus-mode-button';
 import FullscreenModeButton from './fullscreen-mode-button';
+import Tiptap from './tiptap';
 import Toolbar from './toolbar';
 
 export default function Writer() {
