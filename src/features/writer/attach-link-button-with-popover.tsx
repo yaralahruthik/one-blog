@@ -6,13 +6,14 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { type Editor } from '@tiptap/react';
-import { useState } from 'react';
+import React from 'react';
 
 export default function AttachLinkButton({ editor }: { editor: Editor }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = React.useState('');
 
-  const handleConfirm = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (url === '') {
       editor.chain().focus().unsetLink().run();
     } else {
@@ -23,29 +24,26 @@ export default function AttachLinkButton({ editor }: { editor: Editor }) {
         .setLink({ href: url })
         .run();
     }
+
+    setUrl('');
   };
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover>
       <PopoverTrigger asChild>
         <Button size="sm">Attach Link</Button>
       </PopoverTrigger>
       <PopoverContent sideOffset={10} className="px-3 py-2">
-        <div className="flex gap-3">
+        <form onSubmit={handleSubmit} className="flex gap-3">
           <Input
             type="url"
-            placeholder="https://app.oneblog.dev/"
             value={url}
             autoFocus
             onChange={(e) => setUrl(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleConfirm();
-              }
-            }}
+            placeholder="https://example.com"
           />
-          <Button onClick={handleConfirm}>Add</Button>
-        </div>
+          <Button type="submit">Add</Button>
+        </form>
       </PopoverContent>
     </Popover>
   );
