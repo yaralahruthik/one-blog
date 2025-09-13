@@ -126,7 +126,7 @@
 }
 
 .tiptap {
-  @apply h-full px-6 py-4 caret-blue-600 outline-0 dark:caret-blue-500;
+  @apply h-full caret-blue-600 outline-0 dark:caret-blue-500;
 }
 
 /* Dim entire blocks when not focused */

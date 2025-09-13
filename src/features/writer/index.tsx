@@ -1,3 +1,4 @@
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import type { JSONContent } from '@tiptap/react';
 import React from 'react';
@@ -13,23 +14,25 @@ export default function Writer() {
   const toggleFillerHighlight = () => setFillerHighlight((prev) => !prev);
 
   return (
-    <div
-      className={cn(
-        'relative h-svh overflow-y-auto',
-        focusMode && 'focus-mode',
-        fillerHighlight && 'filler-highlight',
-      )}
-    >
-      <div className="absolute right-0 bottom-0">
-        <SettingsMenu
-          fillerHighlight={fillerHighlight}
-          toggleFillerHighlight={toggleFillerHighlight}
-          focusMode={focusMode}
-          toggleFocus={toggleFocus}
-          curJSON={curJSON}
-        />
+    <ScrollArea className="h-svh">
+      <div
+        className={cn(
+          'relative h-full',
+          focusMode && 'focus-mode',
+          fillerHighlight && 'filler-highlight',
+        )}
+      >
+        <div className="fixed top-0 right-2">
+          <SettingsMenu
+            fillerHighlight={fillerHighlight}
+            toggleFillerHighlight={toggleFillerHighlight}
+            focusMode={focusMode}
+            toggleFocus={toggleFocus}
+            curJSON={curJSON}
+          />
+        </div>
+        <Tiptap onUpdate={setJSON} />
       </div>
-      <Tiptap onUpdate={setJSON} />
-    </div>
+    </ScrollArea>
   );
 }
