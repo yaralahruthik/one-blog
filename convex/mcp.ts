@@ -133,9 +133,7 @@ export const postsListForMcp = query({
       .order('desc')
       .collect();
 
-    const filtered = args.status
-      ? posts.filter((post) => post.status === args.status)
-      : posts;
+    const filtered = args.status ? posts.filter((post) => post.status === args.status) : posts;
     const limit = parseLimit(args.limit);
     const offset = parseCursor(args.cursor);
     const window = filtered.slice(offset, offset + limit);
@@ -153,8 +151,7 @@ export const postsListForMcp = query({
     }));
 
     const nextOffset = offset + limit;
-    const nextCursor =
-      nextOffset < filtered.length ? String(nextOffset) : undefined;
+    const nextCursor = nextOffset < filtered.length ? String(nextOffset) : undefined;
 
     return {
       items,

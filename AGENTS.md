@@ -7,7 +7,7 @@ This document contains guidelines for agentic coding assistants working in this 
 One Blog is a minimal React-based blog writing application using:
 
 - React 19.2.4 + TypeScript 5.8.3
-- Vite 7.3.1 as build tool
+- Vite+ (vite-plus) as unified toolchain: build, lint (Oxlint), format (Oxfmt)
 - Tailwind CSS 4.1.18 for styling
 - Shadcn/ui (Radix UI) for components
 - TipTap 3.18.0 for rich text editing
@@ -16,31 +16,28 @@ One Blog is a minimal React-based blog writing application using:
 ## Development Commands
 
 ```bash
-pnpm dev              # Start development server
-pnpm build            # Build for production (tsc + vite build)
-pnpm lint             # Run ESLint on all files
-pnpm preview          # Preview production build
+pnpm dev              # Start development server (vp dev)
+pnpm build            # Build for production (tsc + vp build)
+pnpm lint             # Run Oxlint on all files (vp lint)
+pnpm format           # Format all files (vp fmt)
+pnpm preview          # Preview production build (vp preview)
+vp check              # Run format check + lint + typecheck together
 ```
 
 **Testing:** No test framework is currently configured. To add tests, first set up a framework (e.g., Vitest).
 
 ## Code Style Guidelines
 
-### Formatting (Prettier)
+### Formatting (Oxfmt, configured in `vite.config.ts`)
 
-- **Quotes:** Single quotes (`'`)
-- **Semicolons:** Required
-- **Trailing commas:** All
-- **Indentation:** 2 spaces
-- **Line width:** 80 characters
-- **Tailwind classes:** Auto-sorted via `prettier-plugin-tailwindcss`
+- **Quotes:** Single quotes (`'`) — explicit override; Oxfmt default is double quotes
+- **Tailwind classes:** Auto-sorted (`sortTailwindcss`) — explicit override, not on by default
+- Everything else (semicolons, trailing commas, 2-space indent, **100-char line width**, `package.json` key sorting) uses Oxfmt's own defaults — don't restate a default in `vite.config.ts`.
 
-### ESLint Configuration
+### Lint Configuration (Oxlint, configured in `vite.config.ts`)
 
-- TypeScript ESLint recommended config
-- React Hooks rules (enables `eslint-plugin-react-hooks`)
-- React Refresh for Vite HMR
-- Prettier integration (`eslint-config-prettier`)
+- `react`, `typescript`, `oxc` plugins with type-aware linting enabled
+- Only project-specific rule deltas are listed explicitly (e.g. `react/rules-of-hooks`); everything else relies on Oxlint's own built-in recommended defaults — don't restate a default in `vite.config.ts`.
 
 ### TypeScript
 
@@ -75,13 +72,7 @@ import { cn } from '@/lib/utils';
 - Use default export for components: `export default function ComponentName() {}`
 - Props typed as inline object for simple components:
   ```typescript
-  export default function Component({
-    prop1,
-    prop2,
-  }: {
-    prop1: string;
-    prop2: number;
-  });
+  export default function Component({ prop1, prop2 }: { prop1: string; prop2: number });
   ```
 - For reusable components with variant props, use `class-variance-authority`:
   ```typescript
@@ -116,8 +107,8 @@ import { cn } from '@/lib/utils';
 
 ### Git Hooks
 
-- Husky runs pre-commit hooks via `lint-staged`
-- Prettier formats all staged files automatically on commit
+- Vite+ manages git hooks via `.vite-hooks/` (`core.hooksPath`)
+- Pre-commit runs `vp staged`, which formats staged files per the `staged` config in `vite.config.ts`
 
 ## File Structure
 

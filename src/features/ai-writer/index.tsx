@@ -34,8 +34,7 @@ export default function AIGenerate() {
   const [step, setStep] = React.useState<Step>('input');
   const [topics, setTopics] = React.useState<Topic[]>([]);
   const [error, setError] = React.useState<string | null>(null);
-  const [generatedPost, setGeneratedPost] =
-    React.useState<GeneratedPost | null>(null);
+  const [generatedPost, setGeneratedPost] = React.useState<GeneratedPost | null>(null);
   const [loading, setLoading] = React.useState(false);
 
   const findTrendingTopics = useAction(api.ai.findTrendingTopics);
@@ -111,12 +110,7 @@ export default function AIGenerate() {
   if (!open) {
     return (
       <div className="fixed right-4 bottom-4 z-50 flex items-center gap-2">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setOpen(true)}
-          className="gap-1.5"
-        >
+        <Button variant="outline" size="sm" onClick={() => setOpen(true)} className="gap-1.5">
           <Sparkles className="size-4" />
           Generate
         </Button>
@@ -153,21 +147,13 @@ export default function AIGenerate() {
           )}
 
           {step === 'topics' && (
-            <TopicListStep
-              topics={topics}
-              onSelect={handleGeneratePost}
-              onReset={reset}
-            />
+            <TopicListStep topics={topics} onSelect={handleGeneratePost} onReset={reset} />
           )}
 
           {step === 'generating' && <GeneratingStep />}
 
           {step === 'done' && generatedPost && (
-            <PostDoneStep
-              post={generatedPost}
-              onGenerateAnother={reset}
-              onClose={handleClose}
-            />
+            <PostDoneStep post={generatedPost} onGenerateAnother={reset} onClose={handleClose} />
           )}
         </div>
       </div>

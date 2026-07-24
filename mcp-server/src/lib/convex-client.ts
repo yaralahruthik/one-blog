@@ -46,9 +46,7 @@ export const authWhoAmI = async (
   };
 };
 
-export const listRecentDomains = async (
-  userId: string,
-): Promise<{ domains: string[] }> => {
+export const listRecentDomains = async (userId: string): Promise<{ domains: string[] }> => {
   return (await convex.query(anyApi.mcp.topicsRecentDomainsForMcp, {
     serviceSecret: env.serviceSecret,
     userId,

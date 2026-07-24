@@ -27,8 +27,8 @@ export default function ReplaceEntryDialog({
         <DialogHeader>
           <DialogTitle>Storage Full</DialogTitle>
           <DialogDescription>
-            You can only save up to 10 entries. Choose an entry to replace, or
-            cancel to keep the current entries.
+            You can only save up to 10 entries. Choose an entry to replace, or cancel to keep the
+            current entries.
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="max-h-80">
@@ -46,8 +46,8 @@ export default function ReplaceEntryDialog({
                 <div className="flex flex-col gap-1">
                   <span className="font-medium">{entry.title}</span>
                   <span className="text-muted-foreground text-xs">
-                    {entry.wordCount.wordsCount} words •{' '}
-                    {entry.wordCount.charactersCount} characters
+                    {entry.wordCount.wordsCount} words • {entry.wordCount.charactersCount}{' '}
+                    characters
                   </span>
                 </div>
               </Button>

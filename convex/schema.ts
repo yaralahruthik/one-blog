@@ -18,11 +18,7 @@ export default defineSchema({
     userId: v.string(),
     title: v.string(),
     content: v.string(),
-    status: v.union(
-      v.literal('draft'),
-      v.literal('generating'),
-      v.literal('published'),
-    ),
+    status: v.union(v.literal('draft'), v.literal('generating'), v.literal('published')),
     generatedBy: v.string(),
     domain: v.string(),
     topic: v.string(),

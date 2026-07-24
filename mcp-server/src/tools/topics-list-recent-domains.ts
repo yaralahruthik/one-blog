@@ -15,13 +15,8 @@ export const metadata: ToolMetadata = {
   },
 };
 
-export default async function topicsListRecentDomainsTool(
-  _: InferSchema<typeof schema>,
-) {
+export default async function topicsListRecentDomainsTool(_: InferSchema<typeof schema>) {
   const userId = await requireSessionUserId();
   const result = await listRecentDomains(userId);
-  return toToolResult(
-    result,
-    `Loaded ${result.domains.length} recent domain(s).`,
-  );
+  return toToolResult(result, `Loaded ${result.domains.length} recent domain(s).`);
 }

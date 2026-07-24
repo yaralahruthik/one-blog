@@ -13,9 +13,7 @@ export default function TopicListStep({
 }) {
   return (
     <div className="space-y-3">
-      <p className="text-muted-foreground text-sm">
-        Select a topic to generate a blog post:
-      </p>
+      <p className="text-muted-foreground text-sm">Select a topic to generate a blog post:</p>
       <div className="max-h-96 space-y-2 overflow-y-auto">
         {topics.map((topic, i) => (
           <button
@@ -27,14 +25,10 @@ export default function TopicListStep({
           >
             <div className="flex items-start justify-between gap-2">
               <span className="font-medium">{topic.name}</span>
-              <span className="text-muted-foreground shrink-0 text-xs">
-                {topic.searchVolume}
-              </span>
+              <span className="text-muted-foreground shrink-0 text-xs">{topic.searchVolume}</span>
             </div>
             <p className="text-muted-foreground mt-1 text-sm">{topic.reason}</p>
-            <p className="text-muted-foreground mt-0.5 text-xs">
-              {topic.trend}
-            </p>
+            <p className="text-muted-foreground mt-0.5 text-xs">{topic.trend}</p>
           </button>
         ))}
       </div>

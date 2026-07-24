@@ -22,16 +22,12 @@ type GeneratedPost = {
   wordCount: number;
 };
 
-const providerValidator = v.optional(
-  v.union(v.literal('openai_web'), v.literal('gsc')),
-);
+const providerValidator = v.optional(v.union(v.literal('openai_web'), v.literal('gsc')));
 
 const getClient = () => {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    throw new Error(
-      'OPENAI_API_KEY not set. Run: npx convex env set OPENAI_API_KEY <key>',
-    );
+    throw new Error('OPENAI_API_KEY not set. Run: npx convex env set OPENAI_API_KEY <key>');
   }
   return new OpenAI({ apiKey });
 };
@@ -46,25 +42,19 @@ const assertServiceSecret = (provided: string) => {
 const resolveProvider = (provider?: Provider): Provider => {
   const selected = provider ?? 'openai_web';
   if (selected === 'gsc') {
-    throw new Error(
-      'Provider "gsc" is not configured yet. Use "openai_web" for now.',
-    );
+    throw new Error('Provider "gsc" is not configured yet. Use "openai_web" for now.');
   }
   return selected;
 };
 
 const extractText = (response: OpenAI.Responses.Response): string => {
   const textItems = response.output.filter(
-    (item): item is OpenAI.Responses.ResponseOutputMessage =>
-      item.type === 'message',
+    (item): item is OpenAI.Responses.ResponseOutputMessage => item.type === 'message',
   );
   return textItems
     .flatMap((item) =>
       item.content
-        .filter(
-          (c): c is OpenAI.Responses.ResponseOutputText =>
-            c.type === 'output_text',
-        )
+        .filter((c): c is OpenAI.Responses.ResponseOutputText => c.type === 'output_text')
         .map((c) => c.text),
     )
     .join('\n')

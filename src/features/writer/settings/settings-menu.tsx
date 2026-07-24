@@ -59,10 +59,7 @@ export default function SettingsMenu({
             >
               Highlight Fillers
             </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={focusMode}
-              onCheckedChange={toggleFocus}
-            >
+            <DropdownMenuCheckboxItem checked={focusMode} onCheckedChange={toggleFocus}>
               Focus Mode
             </DropdownMenuCheckboxItem>
           </DropdownMenuGroup>

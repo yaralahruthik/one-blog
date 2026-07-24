@@ -12,8 +12,7 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: 'post_generate_from_topic',
-  description:
-    'Research and generate a full blog post for a domain/topic, then save it.',
+  description: 'Research and generate a full blog post for a domain/topic, then save it.',
   annotations: {
     readOnlyHint: false,
     idempotentHint: false,
@@ -45,8 +44,5 @@ export default async function postGenerateFromTopicTool({
     dataScope: 'app',
   };
 
-  return toToolResult(
-    result,
-    `Post generated successfully: ${generated.title}`,
-  );
+  return toToolResult(result, `Post generated successfully: ${generated.title}`);
 }

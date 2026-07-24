@@ -18,9 +18,7 @@ export const metadata: ToolMetadata = {
   },
 };
 
-export default async function postsGetTool({
-  postId,
-}: InferSchema<typeof schema>) {
+export default async function postsGetTool({ postId }: InferSchema<typeof schema>) {
   const userId = await requireSessionUserId();
   const post = await getPost({ userId, postId });
   if (!post) {

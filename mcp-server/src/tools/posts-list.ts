@@ -20,11 +20,7 @@ export const metadata: ToolMetadata = {
   },
 };
 
-export default async function postsListTool({
-  status,
-  limit,
-  cursor,
-}: InferSchema<typeof schema>) {
+export default async function postsListTool({ status, limit, cursor }: InferSchema<typeof schema>) {
   const userId = await requireSessionUserId();
 
   const result = await listPosts({

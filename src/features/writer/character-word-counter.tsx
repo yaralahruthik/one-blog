@@ -34,10 +34,7 @@ export default function CharacterWordCounter({
       )}
     >
       <CounterItem count={wordsCount} label="words" />
-      <Separator
-        orientation="vertical"
-        className="data-[orientation=vertical]:h-4"
-      />
+      <Separator orientation="vertical" className="data-[orientation=vertical]:h-4" />
       <CounterItem count={charactersCount} label="characters" />
     </div>
   );

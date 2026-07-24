@@ -1,10 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { type Editor } from '@tiptap/react';
 import React from 'react';
 
@@ -18,12 +14,7 @@ export default function AttachLinkButton({ editor }: { editor: Editor }) {
     if (url === '') {
       editor.chain().focus().unsetLink().run();
     } else {
-      editor
-        .chain()
-        .focus()
-        .extendMarkRange('link')
-        .setLink({ href: url })
-        .run();
+      editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
     }
 
     setUrl('');

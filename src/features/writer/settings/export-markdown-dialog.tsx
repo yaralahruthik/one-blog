@@ -19,8 +19,7 @@ function createFrontmatter(metadata: { title?: string; description?: string }) {
   const { title, description } = metadata;
   const parts: string[] = [];
   if (title) parts.push(`title: "${escapeYamlString(title)}"`);
-  if (description)
-    parts.push(`description: "${escapeYamlString(description)}"`);
+  if (description) parts.push(`description: "${escapeYamlString(description)}"`);
   return parts.length ? `---\n${parts.join('\n')}\n---\n\n` : '';
 }
 
@@ -96,20 +95,14 @@ export default function ExportMarkdownDialog({
         <DialogHeader>
           <DialogTitle>Export Document</DialogTitle>
           <DialogDescription>
-            Optionally add a title and description. These will be saved in the
-            markdown frontmatter.
+            Optionally add a title and description. These will be saved in the markdown frontmatter.
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleExport} className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label htmlFor="title">Title</Label>
-            <Input
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              autoFocus
-            />
+            <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} autoFocus />
           </div>
 
           <div className="grid gap-2">

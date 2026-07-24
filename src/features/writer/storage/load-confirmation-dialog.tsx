@@ -25,8 +25,8 @@ export default function LoadConfirmationDialog({
         <DialogHeader>
           <DialogTitle>Load Saved Entry?</DialogTitle>
           <DialogDescription>
-            This will replace your current content with the saved entry from{' '}
-            {entryTitle}. Any unsaved changes will be lost.
+            This will replace your current content with the saved entry from {entryTitle}. Any
+            unsaved changes will be lost.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

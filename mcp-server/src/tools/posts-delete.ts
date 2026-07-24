@@ -18,9 +18,7 @@ export const metadata: ToolMetadata = {
   },
 };
 
-export default async function postsDeleteTool({
-  postId,
-}: InferSchema<typeof schema>) {
+export default async function postsDeleteTool({ postId }: InferSchema<typeof schema>) {
   const userId = await requireSessionUserId();
 
   const result = await deletePost({

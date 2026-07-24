@@ -31,9 +31,7 @@ export default function SaveLoadMenu({
   const [entries, setEntries] = React.useState<StoredEntry[]>([]);
   const [replaceDialogOpen, setReplaceDialogOpen] = React.useState(false);
   const [loadConfirmOpen, setLoadConfirmOpen] = React.useState(false);
-  const [selectedEntry, setSelectedEntry] = React.useState<StoredEntry | null>(
-    null,
-  );
+  const [selectedEntry, setSelectedEntry] = React.useState<StoredEntry | null>(null);
   const [selectedGeneratedPost, setSelectedGeneratedPost] = React.useState<{
     title: string;
     content: string;
@@ -44,7 +42,7 @@ export default function SaveLoadMenu({
 
   const handleDeleteGeneratedPost = (e: React.MouseEvent, postId: string) => {
     e.stopPropagation();
-    removePost({ id: postId as Id<'posts'> });
+    removePost({ id: postId as Id<'posts'> }).catch(console.error);
   };
 
   const loadEntries = React.useCallback(() => {
@@ -88,10 +86,7 @@ export default function SaveLoadMenu({
     }
   };
 
-  const handleGeneratedPostClick = (post: {
-    title: string;
-    content: string;
-  }) => {
+  const handleGeneratedPostClick = (post: { title: string; content: string }) => {
     setSelectedEntry(null);
     setSelectedGeneratedPost(post);
     setLoadConfirmOpen(true);
@@ -130,14 +125,10 @@ export default function SaveLoadMenu({
         <DropdownMenuContent className="w-72" align="end">
           <DropdownMenuLabel>Save & Load</DropdownMenuLabel>
           <DropdownMenuGroup>
-            <DropdownMenuItem onClick={handleSave}>
-              Save Current
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSave}>Save Current</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuLabel>
-            Saved Entries ({entries.length}/10)
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Saved Entries ({entries.length}/10)</DropdownMenuLabel>
           <ScrollArea className="max-h-64">
             {entries.length === 0 ? (
               <div className="text-muted-foreground p-4 text-center text-sm">
@@ -163,8 +154,8 @@ export default function SaveLoadMenu({
                       </Button>
                     </div>
                     <span className="text-muted-foreground text-xs">
-                      {entry.wordCount.wordsCount} words •{' '}
-                      {entry.wordCount.charactersCount} characters
+                      {entry.wordCount.wordsCount} words • {entry.wordCount.charactersCount}{' '}
+                      characters
                     </span>
                   </DropdownMenuItem>
                 ))}

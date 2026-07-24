@@ -12,8 +12,7 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: 'topics_find_trending',
-  description:
-    'Find trending blog topics for a domain and persist them to One Blog.',
+  description: 'Find trending blog topics for a domain and persist them to One Blog.',
   annotations: {
     readOnlyHint: false,
     idempotentHint: false,
@@ -42,8 +41,5 @@ export default async function topicsFindTrendingTool({
     fetchedAt: Date.now(),
   };
 
-  return toToolResult(
-    result,
-    `Found ${topics.length} trending topic(s) for "${domain}".`,
-  );
+  return toToolResult(result, `Found ${topics.length} trending topic(s) for "${domain}".`);
 }

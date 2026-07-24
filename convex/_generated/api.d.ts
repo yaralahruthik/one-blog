@@ -8,16 +8,16 @@
  * @module
  */
 
-import type * as ai from '../ai.js';
-import type * as mcp from '../mcp.js';
-import type * as posts from '../posts.js';
-import type * as topics from '../topics.js';
+import type * as ai from "../ai.js";
+import type * as mcp from "../mcp.js";
+import type * as posts from "../posts.js";
+import type * as topics from "../topics.js";
 
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
-} from 'convex/server';
+} from "convex/server";
 
 declare const fullApi: ApiFromModules<{
   ai: typeof ai;
@@ -36,7 +36,7 @@ declare const fullApi: ApiFromModules<{
  */
 export declare const api: FilterApi<
   typeof fullApi,
-  FunctionReference<any, 'public'>
+  FunctionReference<any, "public">
 >;
 
 /**
@@ -49,7 +49,7 @@ export declare const api: FilterApi<
  */
 export declare const internal: FilterApi<
   typeof fullApi,
-  FunctionReference<any, 'internal'>
+  FunctionReference<any, "internal">
 >;
 
 export declare const components: {};

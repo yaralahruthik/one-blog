@@ -40,9 +40,7 @@ const FillerWordHighlight = Extension.create({
 
                   // For each striked part, find its position inside the matched phrase
                   striked.forEach((strikedText) => {
-                    const innerIndex = phrase
-                      .toLowerCase()
-                      .indexOf(strikedText.toLowerCase());
+                    const innerIndex = phrase.toLowerCase().indexOf(strikedText.toLowerCase());
 
                     if (innerIndex !== -1) {
                       const strikedStart = matchStart + innerIndex;

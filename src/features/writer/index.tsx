@@ -16,12 +16,8 @@ export default function Writer() {
     charactersCount: 0,
     wordsCount: 0,
   });
-  const [currentEntryId, setCurrentEntryId] = React.useState<string | null>(
-    null,
-  );
-  const [autoSaveStatus, setAutoSaveStatus] = React.useState<
-    'idle' | 'saving' | 'saved'
-  >('idle');
+  const [currentEntryId, setCurrentEntryId] = React.useState<string | null>(null);
+  const [autoSaveStatus, setAutoSaveStatus] = React.useState<'idle' | 'saving' | 'saved'>('idle');
   const tiptapRef = React.useRef<TiptapRef>(null);
   const toggleFocus = () => setFocusMode((prev) => !prev);
   const toggleFillerHighlight = () => setFillerHighlight((prev) => !prev);
@@ -37,11 +33,7 @@ export default function Writer() {
     if (!curJSON) return;
 
     setAutoSaveStatus('saving');
-    const { entryId } = saveEntry(
-      curJSON,
-      wordCount,
-      currentEntryId || undefined,
-    );
+    const { entryId } = saveEntry(curJSON, wordCount, currentEntryId || undefined);
     setCurrentEntryId(entryId);
     setAutoSaveStatus('saved');
 
@@ -90,11 +82,7 @@ export default function Writer() {
             wordCount={wordCount}
           />
         </div>
-        <Tiptap
-          ref={tiptapRef}
-          onUpdate={setJSON}
-          onWordCountUpdate={setWordCount}
-        />
+        <Tiptap ref={tiptapRef} onUpdate={setJSON} onWordCountUpdate={setWordCount} />
       </div>
     </ScrollArea>
   );

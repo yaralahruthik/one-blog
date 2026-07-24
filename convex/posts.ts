@@ -39,11 +39,7 @@ export const create = mutation({
     userId: v.string(),
     title: v.string(),
     content: v.string(),
-    status: v.union(
-      v.literal('draft'),
-      v.literal('generating'),
-      v.literal('published'),
-    ),
+    status: v.union(v.literal('draft'), v.literal('generating'), v.literal('published')),
     generatedBy: v.string(),
     domain: v.string(),
     topic: v.string(),
@@ -70,11 +66,7 @@ export const update = mutation({
     title: v.optional(v.string()),
     content: v.optional(v.string()),
     status: v.optional(
-      v.union(
-        v.literal('draft'),
-        v.literal('generating'),
-        v.literal('published'),
-      ),
+      v.union(v.literal('draft'), v.literal('generating'), v.literal('published')),
     ),
     wordCount: v.optional(v.number()),
   },

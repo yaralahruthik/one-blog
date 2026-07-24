@@ -1,7 +1,7 @@
 {
   "name": "@one-blog/mcp-server",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "xmcp dev",
     "build": "xmcp build",

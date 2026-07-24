@@ -15,10 +15,7 @@ const Tiptap = forwardRef<
   TiptapRef,
   {
     onUpdate: (content: JSONContent) => void;
-    onWordCountUpdate: (wordCount: {
-      charactersCount: number;
-      wordsCount: number;
-    }) => void;
+    onWordCountUpdate: (wordCount: { charactersCount: number; wordsCount: number }) => void;
     initialContent?: JSONContent;
   }
 >(({ onUpdate, onWordCountUpdate, initialContent }, ref) => {

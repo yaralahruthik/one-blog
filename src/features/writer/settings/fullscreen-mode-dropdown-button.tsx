@@ -8,9 +8,5 @@ export default function FullscreenModeDropdownButton() {
     return null;
   }
 
-  return (
-    <DropdownMenuItem onClick={toggleFullscreen}>
-      Toggle Fullscreen
-    </DropdownMenuItem>
-  );
+  return <DropdownMenuItem onClick={toggleFullscreen}>Toggle Fullscreen</DropdownMenuItem>;
 }

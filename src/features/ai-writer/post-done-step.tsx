@@ -17,9 +17,7 @@ export default function PostDoneStep({
       </div>
       <div className="space-y-1">
         <p className="font-medium">{post.title}</p>
-        <p className="text-muted-foreground text-sm">
-          {post.wordCount.toLocaleString()} words
-        </p>
+        <p className="text-muted-foreground text-sm">{post.wordCount.toLocaleString()} words</p>
       </div>
       <p className="text-muted-foreground text-xs">Saved to Convex database.</p>
       <div className="flex gap-2">
